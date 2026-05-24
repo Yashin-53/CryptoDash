@@ -7,8 +7,8 @@ async function loadComponent(id, file, callback) {
   if (callback) callback();
 }
 
-loadComponent("header", "../components/header.html", initHeader);
-loadComponent("footer", "../components/footer.html");
+loadComponent("header", "./components/header.html", initHeader);
+loadComponent("footer", "./components/footer.html");
 
 function initHeader() {
   // Theme toggle
