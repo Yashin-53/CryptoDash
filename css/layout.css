@@ -1,0 +1,28 @@
+.container {
+  width: 92%;
+  max-width: 1240px;
+  margin: auto;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.fa-sun {
+  color: white;
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.chart-section { margin-top: 2rem; }
+
+@media (max-width: 768px) {
+  .nav-wrapper { flex-direction: column; gap: 0.75rem; }
+}
