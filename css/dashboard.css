@@ -335,7 +335,17 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .dashboard { padding: 1.25rem 1rem; }
-  .hero { padding: 2rem 1rem 1.5rem; }
+  .hero h1 {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+  }
+
+  .hero p {
+    font-size: 0.85rem;  /* shrink subtitle too so it stays proportional */
+  }
+
+  .hero-badge {
+    font-size: 0.65rem;  /* shrink badge label slightly */
+  }
   .card {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
