@@ -2,6 +2,7 @@ import { fetchCoin, fetchHistory, fetchMarkets } from "./api.js";
 import { saveFavorite, loadFavorites, convertUsdToInr, removeFavorite  } from "./utils.js";
 
 const search     = document.getElementById("search");
+const searchBtn  = document.getElementById("searchBtn");
 const results    = document.getElementById("results");
 const favList    = document.getElementById("favList");
 const loading    = document.getElementById("loading");
@@ -14,8 +15,9 @@ const inrResult  = document.getElementById("inrResult");
 let chart;
 
 // Search coin
-search.addEventListener("keypress", async (e) => {
-  if (e.key !== "Enter") return;
+// Replace the existing search.addEventListener block with this:
+
+async function handleSearch() {
   const coin = search.value.trim().toLowerCase();
   if (!coin) return;
   showLoading(true);
@@ -28,7 +30,13 @@ search.addEventListener("keypress", async (e) => {
   } finally {
     showLoading(false);
   }
+}
+
+search.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") handleSearch();
 });
+
+searchBtn.addEventListener("click", handleSearch);
 
 // Render searched coin
 function renderResult(data) {
@@ -129,12 +137,13 @@ async function renderMarketWidgets() {
     gainersList.innerHTML = gainers.map(item => `
       <li>
         <span class="coin-name">${item.name}</span>
-        <span class="coin-change gain">+${item.price_change_percentage_24h.toFixed(2)}%</span>
+        <span class="coin-change gain">+${(item.price_change_percentage_24h ?? 0).toFixed(2)}%</span>
       </li>`).join("");
+
     losersList.innerHTML = losers.map(item => `
       <li>
         <span class="coin-name">${item.name}</span>
-        <span class="coin-change loss">${item.price_change_percentage_24h.toFixed(2)}%</span>
+        <span class="coin-change loss">${(item.price_change_percentage_24h ?? 0).toFixed(2)}%</span>
       </li>`).join("");
   } catch {
     gainersList.innerHTML = `<li>Error loading data</li>`;

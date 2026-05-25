@@ -10,7 +10,7 @@
   -webkit-backdrop-filter: blur(12px);
 }
 #header {
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 100;
 }

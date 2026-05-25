@@ -85,7 +85,7 @@
 
 #search {
   width: 100%;
-  padding: 0.9rem 1rem 0.9rem 3rem;
+  padding: 0.9rem 3.5rem 0.9rem 3rem;
   border-radius: 12px;
   border: 1.5px solid var(--border);
   background: var(--card);
@@ -109,6 +109,24 @@
   font-family: var(--mono);
   margin-top: 0.5rem;
 }
+
+#searchBtn {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#searchBtn:hover { opacity: 0.85; }
+
 
 /* ── Coin Result Card ── */
 #results { margin-top: 1.5rem; }
@@ -188,10 +206,12 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 0.75rem;
+  min-width: 0;        /* ← lets flex children shrink below content size */
 }
 
 .converter-box input {
-  flex: 1;
+  flex: 1 1 0;         /* ← was just flex: 1, now explicitly allows shrinking */
+  min-width: 0;        /* ← prevents input from overflowing its flex track */
   padding: 0.65rem 0.85rem;
   border-radius: 9px;
   border: 1.5px solid var(--border);
@@ -206,12 +226,14 @@
 .converter-box input:focus { border-color: var(--primary); }
 
 #convertBtn {
+  flex-shrink: 0;      /* ← button stays its natural size, doesn't grow either */
   background: var(--primary);
   color: white;
   padding: 0.65rem 1rem;
   border-radius: 9px;
   font-weight: 700;
   font-size: 0.82rem;
+  white-space: nowrap; /* ← prevents "Convert" from wrapping mid-word */
   transition: opacity 0.2s;
 }
 
@@ -320,4 +342,6 @@
   }
   .card button { grid-column: 1 / -1; width: 100%; }
   .converter-box { flex-direction: column; }
+  .converter-box input,
+  #convertBtn { width: 100%; }   /* ← both fill full width when stacked */
 }
