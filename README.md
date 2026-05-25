@@ -6,7 +6,7 @@ The project demonstrates live API integration, responsive frontend architecture,
 
 
 # 🌐 Live Demo
-🔗 https://cryptodash.onrender.com
+🔗 https://cryptodash-53.netlify.app/
 
 
 # ✨ Features
